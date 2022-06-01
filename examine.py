@@ -24,3 +24,27 @@ class examine():
     def filterByState(self, state) -> None:
         filteredState = self.datafile.where(self.datafile["State"] == state)
         print(filteredState)
+        
+        def userInput(func) -> None:
+        decided: bool = False
+
+        while not decided:
+            num = input("Input in a number to filter by. ")
+            if num.isdigit():
+                y = int(num)
+                def inner(y):
+                    x = func(y)
+                    print(x)
+                    return x
+                return inner(y)
+            else:
+                print("\n\tType in a valid number.\n")
+        return inner(num)
+
+    @userInput
+    def ageFilter(self, num: int):
+        filteredAge = self.datafile.where(self.datafile["Age"] == num)
+        return filteredAge
+
+    def numFilter(self):
+        x = self.userInput(self.ageFilter)
