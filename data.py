@@ -1,4 +1,3 @@
-import pandas as pd
 from examine import examine
 
 if __name__ == "__main__":
